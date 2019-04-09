@@ -1,0 +1,39 @@
+{
+  "name": "page-fps",
+  "version": "1.0.0",
+  "description": "Inject fps indicator into your page.",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "dist": "rimraf dist && webpack --config webpack.config.js --mode production",
+    "build": "rimraf tmp lib && tsc && babel tmp --out-dir lib --copy-files && rimraf tmp && npm run dist"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@types/jest": "^23.3.10",
+    "babel-plugin-version": "^0.2.3",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {},
+  "keywords": [
+    "fps",
+    "performance",
+    "benchmark"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hustcc/page-fps.git"
+  },
+  "author": "hustcc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hustcc/page-fps/issues"
+  },
+  "homepage": "https://github.com/hustcc/page-fps#readme"
+}

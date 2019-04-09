@@ -1,0 +1,5 @@
+.idea
+*.tgz
+lib
+node_modules
+coverage
