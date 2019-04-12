@@ -13,19 +13,14 @@ export class FPS {
    * 开始采集
    */
   start() {
-    this.raf = window.requestAnimationFrame(() => {
-      this.buffer.push(clock.now());
+    this.cancel();
 
-      if (this.buffer.length > MAX) {
-        this.buffer.shift();
-      }
-
-      this.start();
-    });
+    this.loop();
   }
 
   stop() {
-    window.cancelAnimationFrame(this.raf);
+    this.cancel();
+
     this.buffer = [];
     this.raf = -1;
   }
@@ -40,5 +35,21 @@ export class FPS {
     const g = max - min;
     if (!g) return 60;
     return 1000 * (this.buffer.length - 1) / g;
+  }
+
+  private cancel() {
+    window.cancelAnimationFrame(this.raf);
+  }
+
+  private loop() {
+    this.raf = window.requestAnimationFrame(() => {
+      this.buffer.push(clock.now());
+
+      if (this.buffer.length >= MAX) {
+        this.buffer.shift();
+      }
+
+      this.loop();
+    });
   }
 }

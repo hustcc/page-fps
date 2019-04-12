@@ -18,7 +18,9 @@
 ```js
 import PF from 'page-fps';
 
-new PF().start();
+const pf = new PF()
+pf.start();
+pf.stop();
 ```
 
 

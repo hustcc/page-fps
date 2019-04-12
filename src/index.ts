@@ -1,4 +1,6 @@
 import { PF } from './pf';
-export { Datum } from './interface';
+export { FPS } from './fps';
+export { G } from './g';
+export { Timer } from './timer';
 
 export default PF;

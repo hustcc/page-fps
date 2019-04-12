@@ -16,7 +16,7 @@ export class Timer {
    * @param cb
    * @param delay
    */
-  constructor(cb: FrameRequestCallback, delay: number = 60) {
+  constructor(cb: FrameRequestCallback, delay: number = 30) {
     this.cb = cb;
 
     this.delay = delay;
@@ -26,6 +26,24 @@ export class Timer {
    * 启动
    */
   public start() {
+    this.cancel();
+
+    this.loop();
+  }
+
+  /**
+   * 停止
+   */
+  public stop() {
+    this.cancel();
+    this.raf = undefined;
+  }
+
+  private cancel() {
+    window.cancelAnimationFrame(this.raf);
+  }
+
+  private loop() {
     this.raf = window.requestAnimationFrame(() => {
       const n = clock.now();
       if (n > this.prev + this.delay) {
@@ -33,15 +51,7 @@ export class Timer {
         this.cb(0);
       }
 
-      this.start();
+      this.loop();
     });
-  }
-
-  /**
-   * 停止
-   */
-  public stop() {
-    window.cancelAnimationFrame(this.raf);
-    this.raf = undefined;
   }
 }
