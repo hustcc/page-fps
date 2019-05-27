@@ -1,7 +1,5 @@
 const RATIO = window.devicePixelRatio;
 
-const FONT_SIZE = 10; // 字体大小 10
-
 // 画布大小
 const W = 80;
 const H = 12;
@@ -38,12 +36,13 @@ export class G {
     document.body.appendChild(this.c);
 
     this.ctx = this.c.getContext('2d');
+    this.ctx.scale(RATIO, RATIO);
 
     // ctx 样式
     this.ctx.globalAlpha = 0.5;
     this.ctx.fillStyle = 'black';
 
-    this.ctx.font = `${FONT_SIZE * RATIO}px Menlo`;
+    this.ctx.font = '10px Menlo';
     this.ctx.textBaseline = 'middle';
   }
 
@@ -69,7 +68,7 @@ export class G {
     // least fps
     const f = this.fps[this.fps.length - 1];
 
-    this.ctx.fillText(`FPS: ${f.toFixed(3)}`, 2, (6 + 1) * RATIO);
+    this.ctx.fillText(`FPS: ${f.toFixed(3)}`, 2, 6 + 1);
   }
 
   /**
